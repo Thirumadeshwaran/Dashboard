@@ -1,138 +1,241 @@
-:root {
-  --bg: #0b0f14;
-  --card: #121822;
-  --text: #e6edf3;
-  --muted: #9fb0c3;
-  --accent: #5b9cff;
-  --ring: rgba(91, 156, 255, 0.4);
-  --border: #1f2a37;
-}
-
-* { box-sizing: border-box; }
-
+/* 🌐 Base Styles */
 body {
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(1200px 600px at 70% -10%, #132033, #0b0f14);
-  color: var(--text);
+  padding: 0;
+  padding-bottom: 80px; /* Footer space */
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px;
+/* 🌞 Light Mode */
+body.light-mode {
+  background-color: #ffffff;
+  color: #222;
 }
 
-.header h1 { margin: 8px 0 4px; font-size: 28px; }
-.subtitle { margin: 0 0 16px; color: var(--muted); }
-
-#search {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background: #0e1420;
-  color: var(--text);
-  outline: none;
-  transition: box-shadow .2s, border-color .2s;
-}
-#search:focus {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 6px var(--ring);
+.header.light-mode {
+  background-color: #007bff;
+  color: white;
 }
 
-.cards-grid {
-  margin-top: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
+.card.light-mode {
+  background-color: white;
+  color: #000;
 }
 
-.card {
+.footer.light-mode {
+  background-color: #f8f8f8;
+  color: #555;
+  border-top: 1px solid #e6e5e5;
+}
+
+/* 🌚 Dark Mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+.header.dark-mode {
+  background-color: #2a2a2a;
+  color: #f0f0f0;
+  border-bottom: 1px solid #333;
+}
+
+.card.dark-mode {
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+}
+
+.footer.dark-mode {
+  background-color: #2a2a2a;
+  color: #ccc;
+  border-top: 1px solid #333;
+}
+
+/* 🧩 Header */
+.header {
+  text-align: center;
+  padding: 30px 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* 🧱 Card Container */
+.card-container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  background: linear-gradient(180deg, #141b27, #111723 60%, #0f1520);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,.25);
-  cursor: pointer;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .2s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  border-color: #2a3a4d;
-  box-shadow: 0 14px 34px rgba(0,0,0,.35);
-}
-.card:focus-within {
-  outline: 2px solid var(--accent);
-  outline-offset: 2px;
+  gap: 20px;
+  padding: 20px;
 }
 
-.thumb {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 10px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #1a2535, #0e1724);
-  border: 1px solid var(--border);
-  display: grid;
-  place-items: center;
-}
-.thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* 📦 Card */
+.card {
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 8px rgba(0,0,0,0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.placeholder {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 32px;
-  color: #cfe0ff;
-  background: conic-gradient(from 120deg, #22406b, #17233b, #1f3560);
+.card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-.card-content h3 {
-  margin: 0 0 6px;
-  font-size: 18px;
+.card p {
+  font-size: 16px;
+  margin-bottom: 10px;
 }
-.card-content p {
-  margin: 0;
-  color: var(--muted);
+
+/* 🔗 Open Button */
+.open-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
   font-size: 14px;
-  line-height: 1.4;
+  transition: background-color 0.3s ease;
 }
 
-.tag-row {
-  margin-top: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+.open-btn:hover {
+  background-color: #0056b3;
 }
+
+/* 📤 Uploader */
+.uploader {
+  margin-top: 15px;
+}
+
+.uploader label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.uploader input[type="file"] {
+  font-size: 14px;
+}
+
+/* 📞 Footer */
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer a {
+  color: #0078D4;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* 🌗 Theme Toggle Button */
+#themeToggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1000;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Light Mode Button */
+body.light-mode #themeToggle {
+  background-color: #0078D4;
+  color: #ffffff;
+}
+
+body.light-mode #themeToggle:hover {
+  background-color: #005a9e;
+}
+
+/* Dark Mode Button */
+body.dark-mode #themeToggle {
+  background-color: #444;
+  color: #f0f0f0;
+}
+
+body.dark-mode #themeToggle:hover {
+  background-color: #666;
+}
+
+/* 🏷️ Tags */
 .tag {
-  font-size: 12px;
-  color: #cfe0ff;
-  background: #14223a;
-  border: 1px solid #27436e;
+  background-color: #0078D4;
+  color: white;
+  border-radius: 4px;
   padding: 4px 8px;
-  border-radius: 999px;
-  white-space: nowrap;
+  font-size: 0.8rem;
+  margin-right: 6px;
 }
 
-.card-footer {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: var(--muted);
-  font-size: 12px;
+/* 🔍 Search Input (Dark Mode Only) */
+#search.dark-mode {
+  background-color: #333;
+  color: #e0e0e0;
+  border: 1px solid #555;
 }
 
-@media (max-width: 520px) {
-  .header h1 { font-size: 22px; }
+/* 📱 Mobile Styles */
+@media screen and (max-width: 480px) {
+  .header {
+    padding: 20px 10px;
+    font-size: 18px;
+  }
+
+  .card-container {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 15px;
+  }
+
+  .card h2 {
+    font-size: 18px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .open-btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .uploader label,
+  .uploader input[type="file"] {
+    font-size: 13px;
+  }
+
+  .footer {
+    font-size: 12px;
+    padding: 15px;
+  }
+
+  #themeToggle {
+    top: 10px;
+    left: 10px;
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+}
+.footer.dark-mode {
+  background: linear-gradient(to top, #1f1f1f, #2a2a2a);
 }

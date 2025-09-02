@@ -1,23 +1,44 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Thiru – Projects Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard</title>
   <link rel="stylesheet" href="main.css" />
-  <script src="main.js"></script>
 </head>
 <body>
-  <main class="container">
-    <header class="header">
-      <h1>Projects Dashboard</h1>
-      <p class="subtitle">By thirumadeshwaran </p>
-      <input id="search" type="search" placeholder="Search projects..." aria-label="Search projects" />
-    </header>
+  <header class="header">
+    <h1>Welcome to Thirumadeshwaran's Dashboard</h1>
+  </header>
+<body>
+  <!-- your content -->
+  <button id="themeToggle">🌙 Dark Mode</button>
+  <script src="main.js"></script>
+</body>
+  <main class="card-container">
+    <!-- Example Project Card -->
+    <div class="card">
+      <h2>QR Code Generator</h2>
+      <p>Generate and download QR codes in PNG, JPG, or PDF format.</p>
+      <a href="projects/card1/index.html" class="open-btn">Open Project</a>
 
-    <section id="cards" class="cards-grid" aria-live="polite"></section>
+      <!-- 📤 File Uploader 
+      <div class="uploader">
+        <label for="fileUpload1">Upload related file:</label>
+        <input type="file" id="fileUpload1" />
+      </div>
+    </div> -->
+
+    <!-- You can duplicate this card for future projects -->
   </main>
 
-  <script src="script.js"></script>
+  <!-- 🖊️ Footer with Contact Info -->
+<footer class="footer dark-mode">
+  <p>Created by Thirumadeshwaran © 2025</p>
+  <p>Email: <a href="mailto:thirumadeshwaran379@gmail.com">thirumadeshwaran379@gmail.com</a></p>
+  <p>Contact: <a href="tel:+916382620118">6382620118</a></p>
+</footer>
+
+  <script src="main.js"></script>
 </body>
 </html>

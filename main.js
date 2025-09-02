@@ -1,11 +1,10 @@
-// Easy-to-edit project list. Add more objects below.
 const projects = [
   {
     id: "dashboard",
     title: "Dashboard",
     description: "Cards-based hub for all my projects.",
-    link: "https://github.com/Thirumadeshwaran/Dashboard", // or your live URL
-    thumbnail: "", // e.g., "assets/dashboard.png" (leave empty to use placeholder)
+    link: "https://github.com/Thirumadeshwaran/Dashboard",
+    thumbnail: "",
     tags: ["Web", "HTML", "CSS", "JS"],
     updatedAt: "2025-09-02"
   },
@@ -13,7 +12,7 @@ const projects = [
     id: "portfolio",
     title: "Portfolio Website",
     description: "Personal portfolio with work samples and contact.",
-    link: "https://example.com/portfolio", // replace with your project link
+    link: "https://example.com/portfolio",
     thumbnail: "",
     tags: ["Web", "Responsive"],
     updatedAt: "2025-08-20"
@@ -23,11 +22,12 @@ const projects = [
 // Render cards
 function renderCards(list) {
   const container = document.getElementById("cards");
+  if (!container) return;
   container.innerHTML = "";
 
   list.forEach(p => {
     const article = document.createElement("article");
-    article.className = "card";
+    article.className = "card light-mode";
     article.tabIndex = 0;
     article.setAttribute("role", "button");
     article.setAttribute("aria-label", `${p.title} – open project`);
@@ -71,15 +71,51 @@ function renderCards(list) {
 }
 
 // Basic search
-const searchEl = document.getElementById("search");
-searchEl.addEventListener("input", () => {
-  const q = searchEl.value.trim().toLowerCase();
-  const filtered = projects.filter(p =>
-    (p.title || "").toLowerCase().includes(q) ||
-    (p.description || "").toLowerCase().includes(q) ||
-    (p.tags || []).join(" ").toLowerCase().includes(q)
-  );
-  renderCards(filtered);
+document.addEventListener("DOMContentLoaded", () => {
+  const searchEl = document.getElementById("search");
+  if (searchEl) {
+    searchEl.addEventListener("input", () => {
+      const q = searchEl.value.trim().toLowerCase();
+      const filtered = projects.filter(p =>
+        (p.title || "").toLowerCase().includes(q) ||
+        (p.description || "").toLowerCase().includes(q) ||
+        (p.tags || []).join(" ").toLowerCase().includes(q)
+      );
+      renderCards(filtered);
+    });
+  }
+
+  // Initial render
+  renderCards(projects);
+  console.log("Dashboard loaded");
+
+  // Theme toggle
+  const toggleBtn = document.getElementById("themeToggle");
+  const body = document.body;
+
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      body.classList.toggle("dark-mode");
+      body.classList.toggle("light-mode");
+
+      document.querySelectorAll(".card").forEach(card => {
+        card.classList.toggle("dark-mode");
+        card.classList.toggle("light-mode");
+      });
+
+      document.querySelector(".header")?.classList.toggle("dark-mode");
+      document.querySelector(".header")?.classList.toggle("light-mode");
+
+      document.querySelector(".footer")?.classList.toggle("dark-mode");
+      document.querySelector(".footer")?.classList.toggle("light-mode");
+
+      toggleBtn.textContent = body.classList.contains("dark-mode")
+        ? "☀️ Light Mode"
+        : "🌙 Dark Mode";
+    });
+  } else {
+    console.warn("Theme toggle button not found");
+  }
 });
 
 // Helpers
@@ -87,11 +123,9 @@ function openProject(url) {
   if (!url) return;
   window.open(url, "_blank", "noopener,noreferrer");
 }
+
 function escapeHTML(str) {
   return String(str).replace(/[&<>"']/g, m => (
     { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]
   ));
 }
-
-// Initial render
-renderCards(projects);
